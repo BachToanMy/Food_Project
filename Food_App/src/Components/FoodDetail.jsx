@@ -1,4 +1,5 @@
 import styles from "./fooddetails.module.css";
+import ItemList from "./ItemList";
 import { useEffect, useState } from "react";
 export default function FoodDetail({ foodID }) {
   const [foodInfo, setFoodInfo] = useState({});
@@ -25,10 +26,10 @@ export default function FoodDetail({ foodID }) {
             <strong>⏳ {foodInfo.readyInMinutes} Minutes</strong>
           </span>
           <span>
-            <strong>👨‍👩‍👧‍👦Serves: {food.serving}</strong>
+            <strong>👨‍👩‍👧‍👦Serves: {foodInfo.serving}</strong>
           </span>
           <span>
-            <strong>{food.vegan ? "🐄 Vegan" : ""}</strong>
+            <strong>{foodInfo.vegan ? "🐄 Vegan" : ""}</strong>
           </span>
           <span>
             <strong>
@@ -50,7 +51,7 @@ export default function FoodDetail({ foodID }) {
               {isLoading ? (
                 <p>Loading...</p>
               ) : (
-                food.analyzedInstruction[0].steps.map((step) => (
+                foodInfo.analyzedInstructions[0].steps.map((step) => (
                   <li>{step.step}</li>
                 ))
               )}
